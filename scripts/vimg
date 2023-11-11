@@ -14,12 +14,15 @@ function render_at_size {
   img_path="${3}"
 
   # animation is turned off as it does werid things with the terminal output
-  chafa --animate=off --center=on --clear --size "${max_width}x${max_height}" "${img_path}"
+  # chafa --animate=off --center=on --clear --size "${max_width}x${max_height}" "${img_path}"
+  #
+  # use img2sixel
+  img2sixel --width "${max_width}" --height "${max_height}" "${img_path}"
 }
 
 function draw_preview {
-    if ! command -v chafa &> /dev/null; then
-      echo "chafa could not be found in your path,\nplease install it to display media content"
+    if ! command -v img2sixel &> /dev/null; then
+      echo "img2sixel could not be found in your path,\nplease install it to display media content"
       exit
     fi
 
